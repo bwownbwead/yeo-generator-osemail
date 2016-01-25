@@ -1,0 +1,25 @@
+{
+  "name": "generator-osemail",
+  "version": "1.0.0",
+  "description": "yeoman generator for onside HTML emails",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bwownbwead/yeo-generator-osemail.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Vincent McAulay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bwownbwead/yeo-generator-osemail/issues"
+  },
+  "homepage": "https://github.com/bwownbwead/yeo-generator-osemail#readme",
+  "dependencies": {
+    "yeoman-generator": "^0.22.4"
+  }
+}
