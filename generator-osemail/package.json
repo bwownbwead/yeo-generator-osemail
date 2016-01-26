@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/bwownbwead/yeo-generator-osemail#readme",
   "dependencies": {
+    "chalk": "^1.1.1",
+    "lodash": "^4.0.1",
     "yeoman-generator": "^0.22.4"
+  },
+  "devDependencies": {
+    "yosay": "^1.1.0"
   }
 }
