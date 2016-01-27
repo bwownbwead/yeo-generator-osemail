@@ -43,9 +43,17 @@ module.exports = generators.Base.extend({
 		this.prompt([
 		{
 			type: 'input',
+			name: 'charityNumber',
+			message: 'What is the registered charity number?',
+			default: 'XXXXXXX',
+			store: true
+		},
+		{
+			type: 'input',
 			name: 'colourBodyCopy',
 			message: 'What is the colour of the body copy (hex value)?',
-			default: '#000000'
+			default: '#444444'
+
 		},
 		{
 			type: 'input',
@@ -62,11 +70,39 @@ module.exports = generators.Base.extend({
 					name: 'Single Wide Column',
 					value: 'layoutSingleWideColumn',
 					checked: true
+				},
+				{
+					name: 'Two Columns',
+					value: 'layoutTwoColumns',
+					checked: true
+				},
+				{
+					name: 'Three Columns',
+					value: 'layoutThreeColumns',
+					checked: true
+				},
+				{
+					name: 'Image Left, Text Right',
+					value: 'layoutImageLeftTextRight',
+					checked: true
+				},
+				{
+					name: 'Image Right, Text Left',
+					value: 'layoutImageRightTextLeft',
+					checked: true
 				}
 			]
 		}], function(answers) {
-			this.colourBodyCopy = answers.colourBodyCopy;
+			this.charityNumber = answers.charityNumber;
+			// this.colourBodyCopy = answers.colourBodyCopy;
+			this.config.set('colourBodyCopy', answers.colourBodyCopy);
+			this.config.save();
+
 			this.layoutSingleWideColumn = _.includes(answers.layoutSections, 'layoutSingleWideColumn');
+			this.layoutTwoColumns = _.includes(answers.layoutSections, 'layoutTwoColumns');
+			this.layoutThreeColumns = _.includes(answers.layoutSections, 'layoutThreeColumns');
+			this.layoutImageLeftTextRight = _.includes(answers.layoutSections, 'layoutImageLeftTextRight');
+			this.layoutImageRightTextLeft = _.includes(answers.layoutSections, 'layoutImageRightTextLeft');
 			done();
 		}.bind(this));
 
@@ -91,8 +127,13 @@ module.exports = generators.Base.extend({
 				this.destinationPath('src/index.html'),
 				{
 					yzname: this.yzname,
-					colourBodyCopy: this.colourBodyCopy,
-					layoutSingleWideColumn: this.layoutSingleWideColumn
+					charityNumber: this.charityNumber,
+					colourBodyCopy: this.config.get('colourBodyCopy'),
+					layoutSingleWideColumn: this.layoutSingleWideColumn,
+					layoutTwoColumns: this.layoutTwoColumns,
+					layoutThreeColumns: this.layoutThreeColumns,
+					layoutImageLeftTextRight: this.layoutImageLeftTextRight,
+					layoutImageRightTextLeft: this.layoutImageRightTextLeft
 				}
 			)
 		}
