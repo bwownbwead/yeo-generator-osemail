@@ -14,10 +14,11 @@ module.exports = generators.Base.extend({
 			required: false
 		});
 		
-		// this.yzname = _.startCase(this.yzname);
-
-		this.log(this.yzname);
-
+		if ( this.yzname ) {
+			this.yzname = _.startCase(this.yzname);
+			this.log(this.yzname);
+		}
+		
 		// this.option('testbool', {
 		// 	desc: 'True or False?',
 		// 	type: Boolean,
@@ -136,6 +137,19 @@ module.exports = generators.Base.extend({
 					layoutImageRightTextLeft: this.layoutImageRightTextLeft
 				}
 			)
+		},
+
+		git: function () {
+			this.composeWith('common', {
+				options: {
+					'skip-message': true,
+					gitignore: true,
+					gitattributes: false,
+					jshintrc: false,
+					editorconfig: false,
+					'test-jshintrc': false
+				}
+			});
 		}
 	},
 
