@@ -235,6 +235,9 @@ module.exports = generators.Base.extend({
 					editorconfig: false,
 					'test-jshintrc': false
 				}
+			},
+			{
+				local: require.resolve('generator-common')
 			});
 		}
 	},
