@@ -31,7 +31,8 @@ describe('oseamil:app', function () {
 				.withPrompts({
 					'charityNumber': '12345ABCD',
 					'primaryBrandColourName': 'Orange',
-					'secondaryBrandColourName': 'Blue'
+					'secondaryBrandColourName': 'Blue',
+					'linkedInUrl': 'https://www.linkedin.com/company/760796'
 				})
 				.on('end', done);
 		});
@@ -43,6 +44,11 @@ describe('oseamil:app', function () {
 
 		it('adds the registered charity number', function () {
 			assert.fileContent('src/index.html', /Registered Charity No:\s*[0-9|a-z|A-Z]+/);
+		});
+
+		it('adds the linkedin icon and url', function () {
+			assert.fileContent('src/index.html', /class="jstest-linkedInUrl"\shref="https:\/\/www\.linkedin\.com\/company\/760796"/);
+			assert.fileContent('src/index.html', /<img\ssrc="images\/social-linked\.jpg"/)
 		});
 	});
 });
