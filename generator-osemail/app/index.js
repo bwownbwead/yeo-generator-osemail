@@ -180,6 +180,7 @@ module.exports = generators.Base.extend({
 
 	configuring: function () {
 		
+		// ensure all colours match hex values or valid colours
 	},
 
 	default: function () {
@@ -247,7 +248,7 @@ module.exports = generators.Base.extend({
 	},
 
 	install: function () {
-
+		
 	},
 
 	end: function () {
