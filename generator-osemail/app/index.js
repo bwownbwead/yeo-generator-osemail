@@ -39,7 +39,9 @@ module.exports = generators.Base.extend({
 
 		var defaultAnswers = {
 			twitterUrl: 'Youth zone doesn\'t use Twitter',
-			linkedInUrl: 'Youth zone doesn\'t use LinkedIn'
+			linkedInUrl: 'Youth zone doesn\'t use LinkedIn',
+			flickrUrl: 'Youth zone doesn\'t use Flickr',
+			youtubeUrl: 'Youth zone doesn\'t use Youtube'
 		}
 
 		this.log(yosay('Welcome to the ' + chalk.blue('Onside Youth Zone Email') + ' generator'));
@@ -86,14 +88,26 @@ module.exports = generators.Base.extend({
 		{
 			type: 'input',
 			name: 'secondaryBrandColourName',
-			message: 'What is the primary brand colour name?',
+			message: 'What is the secondary brand colour name?',
 			default: 'Purple'
 		},
 		{
 			type: 'input',
 			name: 'secondaryBrandColour',
-			message: 'What is the primary brand colour?',
+			message: 'What is the secondary brand colour?',
 			default: '#592c82'
+		},
+		{
+			type: 'input',
+			name: 'linkColourName',
+			message: 'What is the link colour name?',
+			default: 'Black'
+		},
+		{
+			type: 'input',
+			name: 'linkColour',
+			message: 'What is the link colour (this is also the button background colour)?',
+			default: '#000'
 		},
 		{
 			type: 'input',
@@ -112,6 +126,18 @@ module.exports = generators.Base.extend({
 			name: 'linkedInUrl',
 			message: 'Does the youth zone have a LinkedIn account? If so what is the profile URL?',
 			default: defaultAnswers.linkedInUrl
+		},
+		{
+			type: 'input',
+			name: 'flickrUrl',
+			message: 'Does the youth zone have a Flickr account? If so what is the profile URL?',
+			default: defaultAnswers.flickrUrl
+		},
+		{
+			type: 'input',
+			name: 'youtubeUrl',
+			message: 'Does the youth zone have a Youtube account? If so what is the profile URL?',
+			default: defaultAnswers.youtubeUrl
 		},
 		{
 			type: 'checkbox',
@@ -153,11 +179,15 @@ module.exports = generators.Base.extend({
 			// urls
 			this.twitterUrl = ( defaultAnswers.twitterUrl === answers.twitterUrl ) ? false : answers.twitterUrl;
 			this.linkedInUrl = ( defaultAnswers.linkedInUrl === answers.linkedInUrl ) ? false : answers.linkedInUrl;
+			this.flickrUrl = ( defaultAnswers.flickrUrl === answers.flickrUrl ) ? false : answers.flickrUrl;
+			this.youtubeUrl = ( defaultAnswers.youtubeUrl === answers.youtubeUrl ) ? false : answers.youtubeUrl;
 			
 			// colours
 			this.config.set('colourBodyCopy', answers.colourBodyCopy);
 			this.config.set('darkBgColour', answers.darkBgColour);
-			this.config.set('buttonBgColour', answers.buttonBgColour);
+			this.config.set('linkColour', answers.linkColour);
+			this.config.set('linkColourName', answers.linkColourName);
+
 			this.footerBgColour = answers.footerBgColour;
 			this.primaryBrandColour = answers.primaryBrandColour;
 			this.primaryBrandColourName = answers.primaryBrandColourName;
@@ -205,11 +235,14 @@ module.exports = generators.Base.extend({
 					yzSiteUrl: this.yzSiteUrl,
 					twitterUrl: this.twitterUrl,
 					linkedInUrl: this.linkedInUrl,
+					flickrUrl: this.flickrUrl,
+					youtubeUrl: this.youtubeUrl,
 
 					// colours
 					colourBodyCopy: this.config.get('colourBodyCopy'),
 					darkBgColour: this.config.get('darkBgColour'),
-					buttonBgColour: this.config.get('buttonBgColour'),
+					linkColour: this.config.get('linkColour'),
+					linkColourName: this.config.get('linkColourName'),
 					primaryBrandColour: this.primaryBrandColour,
 					primaryBrandColourName: this.primaryBrandColourName,
 					secondaryBrandColour: this.secondaryBrandColour,
